@@ -15,8 +15,8 @@ void whoWins(char);
 
 //create global variables
 char gameArray[3][3];
-char PLAYER1 = 'X';
-char PLAYER2 = 'O';
+char player1 = 'X';
+char player2 = 'O';
 
 
 int main(){
@@ -26,6 +26,7 @@ int main(){
     setGame();
     while(winner == ' ' && numberOfPlaces() != 0){
         printGame();
+        player1();
     }
 
 
@@ -62,6 +63,7 @@ void printGame(){
     printf("| %c | %c | %c |", gameArray[2][0], gameArray[2][1], gameArray[2][2]);
     printf("\n+------------+\n");
 }
+
 void setGame(){
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++) {
@@ -69,9 +71,11 @@ void setGame(){
         }
     }
 }
+
 char winner(){
 
 }
+
 int numberOfPlaces(){
     int numberOfSpaces = 9;
 
@@ -84,12 +88,29 @@ int numberOfPlaces(){
     }
     return numberOfSpaces;
 }
-void player1(){
 
+void player1(){
+    int x,y;
+
+    do {
+        printf("Player 1 make your move");
+        scanf("%d %d", &x, &y);
+        x--;
+        y--;
+
+        if(gameArray[x][y] != ' '){
+            printf("Invalid spot\n");
+        } else{
+            gameArray[x][y] = player1;
+            break;
+        }
+    } while(gameArray[x][y] != ' ');
 }
+
 void aiComputer(){
 
 }
+
 void whoWins(char winner){
 
 }
