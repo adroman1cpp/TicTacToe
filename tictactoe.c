@@ -43,25 +43,8 @@ int main(){
         }
     }
 
-
-
-
-
-
-    //prompt user for game they wish to play
-    //write code here
-
-    //read information from console
-    //write code here
-
-    //pvp code
-    //write code here
-
-    //computer code
-    //write code here
-
-    //
-
+    printGame();
+    printWhoWins(winner);
 
 
     return 0;
@@ -161,11 +144,11 @@ void aiComputer(){
 
 void printWhoWins(char winner){
     if(winner == player1){
-        printf("Player 1 wins.")
+        printf("Player 1 wins.");
     } else if(winner == ai){
-        printf("Computer wins.")
+        printf("Computer wins.");
     } else if (winner == player2){
-        printf("Player 2 wins.")
+        printf("Player 2 wins.");
     } else{
         printf("Draw.");
     }
