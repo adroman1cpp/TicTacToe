@@ -9,7 +9,7 @@ void printGame();
 void setGame();
 char whoWins();
 int numberOfPlaces();
-void player1();
+void firstPlayer();
 void aiComputer();
 void printWhoWins(char);
 
@@ -23,29 +23,41 @@ char ai = 'O';
 int main(){
 
     char winner = ' ';
+    char playagain;
 
-    setGame();
-    while(winner == ' ' && numberOfPlaces() != 0){
+    do
+    {
+        winner = ' ';
+        playagain = ' ';
+        setGame();
+        while(winner == ' ' && numberOfPlaces() != 0){
+            printGame();
+
+            firstPlayer();
+            winner = whoWins();
+
+            if(winner != ' ' || numberOfPlaces() == 0){
+                break;
+            }
+
+            aiComputer();
+            winner = whoWins();
+
+            if(winner != ' ' || numberOfPlaces() == 0){
+                break;
+            }
+        }
+
         printGame();
+        printWhoWins(winner);
 
-        player1();
-        winner = whoWins();
+        printf("\n Play Again? (Y/N): ");
+        scanf("%c");
+        scanf("%c", &playagain);
+        playagain = toupper(playagain);
+    } while (playagain == 'Y');
 
-        if(winner != ' ' || numberOfPlaces() == 0){
-            break;
-        }
-
-        aiComputer();
-        winner = whoWins();
-
-        if(winner != ' ' || numberOfPlaces() == 0){
-            break;
-        }
-    }
-
-    printGame();
-    printWhoWins(winner);
-
+    printf("Gamer Over.");
 
     return 0;
 }
@@ -108,11 +120,11 @@ int numberOfPlaces(){
     return numberOfSpaces;
 }
 
-void player1(){
+void firstPlayer(){
     int x,y;
 
     do {
-        printf("Player 1 make your move");
+        printf("Player 1 make your move: ");
         scanf("%d %d", &x, &y);
         x--;
         y--;
