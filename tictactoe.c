@@ -10,6 +10,7 @@ void setGame();
 char whoWins();
 int numberOfPlaces();
 void firstPlayer();
+void secondPlayer();
 void aiComputer();
 void printWhoWins(char);
 
@@ -24,38 +25,74 @@ int main(){
 
     char winner = ' ';
     char playagain;
+    int choice;
 
-    do
-    {
-        winner = ' ';
-        playagain = ' ';
-        setGame();
-        while(winner == ' ' && numberOfPlaces() != 0){
+    do {
+        printf("======================\n");
+        printf("WELCOME TO TIC TAC TOE!\n");
+        printf("1 -- person vs person\n");
+        printf("2 -- person vs computer\n");
+        printf("Enter your choice (1 or 2): ");
+        scanf("%d", &choice);
+         if(choice == 1){
+            winner = ' ';
+            playagain = ' ';
+            setGame();
+            while(winner == ' ' && numberOfPlaces() != 0){
+                printGame();
+
+                firstPlayer();
+                winner = whoWins();
+
+                if(winner != ' ' || numberOfPlaces() == 0){
+                    break;
+                }
+
+                printGame();
+                secondPlayer();
+                winner = whoWins();
+
+                if(winner != ' ' || numberOfPlaces() == 0){
+                    break;
+                }
+            }
+
             printGame();
-
-            firstPlayer();
-            winner = whoWins();
-
-            if(winner != ' ' || numberOfPlaces() == 0){
-                break;
-            }
-
-            aiComputer();
-            winner = whoWins();
-
-            if(winner != ' ' || numberOfPlaces() == 0){
-                break;
-            }
+            printWhoWins(winner);
         }
+        if(choice == 2){
+
+            winner = ' ';
+            playagain = ' ';
+            setGame();
+            while(winner == ' ' && numberOfPlaces() != 0){
+                printGame();
+
+                firstPlayer();
+                winner = whoWins();
+
+                if(winner != ' ' || numberOfPlaces() == 0){
+                    break;
+                }
+
+                aiComputer();
+                winner = whoWins();
+
+                if(winner != ' ' || numberOfPlaces() == 0){
+                    break;
+                }
+            }
 
         printGame();
-        printWhoWins(winner);
+        printWhoWins(winner); 
+        }
 
         printf("\n Play Again? (Y/N): ");
         scanf("%c");
         scanf("%c", &playagain);
         playagain = toupper(playagain);
     } while (playagain == 'Y');
+    
 
     printf("Gamer Over.");
 
@@ -64,6 +101,7 @@ int main(){
 
 
 void printGame(){
+    printf("The current status is:\n");
     printf("+-----------+\n");
     printf("| %c | %c | %c |", gameArray[0][0], gameArray[0][1], gameArray[0][2]);
     printf("\n+-----------+\n");
@@ -133,6 +171,24 @@ void firstPlayer(){
             printf("Invalid spot\n");
         } else{
             gameArray[x][y] = player1;
+            break;
+        }
+    } while(gameArray[x][y] != ' ');
+}
+
+void secondPlayer(){
+    int x,y;
+
+    do {
+        printf("Player 2 make your move: ");
+        scanf("%d %d", &x, &y);
+        x--;
+        y--;
+
+        if(gameArray[x][y] != ' '){
+            printf("Invalid spot\n");
+        } else{
+            gameArray[x][y] = player2;
             break;
         }
     } while(gameArray[x][y] != ' ');
