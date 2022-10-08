@@ -7,17 +7,23 @@
 //declare functions
 void printGame();
 void setGame();
-char winner;
-int numberOfPlaces;
-void player1;
-void aiComputer;
+char winner();
+int numberOfPlaces();
+void player1();
+void aiComputer();
 void whoWins(char);
 
-
+//create global variables
+char gameArray[3][3];
+constant char PLAYER1 = 'X';
+constant char PLAYER2 = 'O';
 
 
 int main(){
 
+    char winner = ' ';
+
+    setGame();
     //prompt user for game they wish to play
     //write code here
 
@@ -38,10 +44,24 @@ int main(){
 }
 
 
-void printGame();
-void setGame();
-char winner;
-int numberOfPlaces;
-void player1;
-void aiComputer;
-void whoWins(char);
+void printGame(){
+
+}
+void setGame(){
+
+}
+char winner(){
+
+}
+int numberOfPlaces(){
+
+}
+void player1(){
+
+}
+void aiComputer(){
+
+}
+void whoWins(char winner){
+
+}
