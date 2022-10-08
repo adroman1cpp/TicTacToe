@@ -15,8 +15,8 @@ void whoWins(char);
 
 //create global variables
 char gameArray[3][3];
-constant char PLAYER1 = 'X';
-constant char PLAYER2 = 'O';
+char PLAYER1 = 'X';
+char PLAYER2 = 'O';
 
 
 int main(){
@@ -24,6 +24,15 @@ int main(){
     char winner = ' ';
 
     setGame();
+    while(winner == ' ' && numberOfPlaces() != 0){
+        printGame();
+    }
+
+
+
+
+
+
     //prompt user for game they wish to play
     //write code here
 
@@ -45,12 +54,18 @@ int main(){
 
 
 void printGame(){
-
+    printf("+------------+\n");
+    printf("| %c | %c | %c |", gameArray[0][0], gameArray[0][1], gameArray[0][2]);
+    printf("\n+------------+\n");
+    printf("| %c | %c | %c |", gameArray[1][0], gameArray[1][1], gameArray[1][2]);
+    printf("\n+------------+\n");
+    printf("| %c | %c | %c |", gameArray[2][0], gameArray[2][1], gameArray[2][2]);
+    printf("\n+------------+\n");
 }
 void setGame(){
     for(int i=0; i<3; i++){
         for(int j=0; j<3; j++) {
-            board[i][j] = ' ';
+            gameArray[i][j] = ' ';
         }
     }
 }
@@ -58,7 +73,16 @@ char winner(){
 
 }
 int numberOfPlaces(){
+    int numberOfSpaces = 9;
 
+    for(int i=0; i<3; i++){
+        for(int j=0; j<3; j++){
+            if(gameArray[i][j] != ' '){
+                numberOfSpaces--;
+            }
+        }
+    }
+    return numberOfSpaces;
 }
 void player1(){
 
